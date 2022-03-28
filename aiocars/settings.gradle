@@ -1,0 +1,5 @@
+rootProject.name = 'aiocars'
+include 'aiocars-api'
+include 'aiocars-impl'
+include 'aiocars-db'
+
