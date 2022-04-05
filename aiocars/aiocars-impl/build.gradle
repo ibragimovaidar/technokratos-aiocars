@@ -1,17 +1,30 @@
-plugins {
-    id 'java'
-}
-
-group 'com.technokratos.aiocars'
-version '1.0-SNAPSHOT'
+war.archiveFileName = "${project.name}.war"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.liquibase:liquibase-core:3.10.3'
+    implementation 'org.springframework.data:spring-data-jpa:2.6.2'
+    implementation 'org.hibernate:hibernate-core:5.6.5.Final'
+    implementation "org.mapstruct:mapstruct:1.3.1.Final"
+    implementation project(':aiocars-api')
+    implementation project(':aiocars-db')
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.3.1.Final"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    project(":aiocars-db").sourceSets.main.resources
+            ]
+        }
+    }
 }
 
 test {
