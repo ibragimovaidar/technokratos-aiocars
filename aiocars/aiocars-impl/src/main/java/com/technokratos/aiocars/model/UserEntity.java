@@ -36,7 +36,7 @@ public class UserEntity extends AbstractEntity {
     @Column(name = "hash_password", nullable = false)
     private String hashPassword;
 
-    private boolean verified = false;
+    private boolean verified;
 
     @OneToMany(mappedBy = "user")
     private List<SubscriptionEntity> subscriptions;

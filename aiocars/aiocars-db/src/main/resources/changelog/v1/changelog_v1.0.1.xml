@@ -9,4 +9,5 @@
     <include file="20220409-init-db.xml" relativeToChangelogFile="true"/>
     <include file="20220410-add-roles.xml" relativeToChangelogFile="true"/>
     <include file="20220410-add-privileges.xml" relativeToChangelogFile="true"/>
+    <include file="20220428-add-refresh-token.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
