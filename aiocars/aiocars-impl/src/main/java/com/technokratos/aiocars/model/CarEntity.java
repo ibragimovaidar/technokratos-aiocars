@@ -7,12 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -38,4 +33,12 @@ public class CarEntity extends AbstractEntity {
     @ToString.Exclude
     @OneToMany
     private List<AdvertisementEntity> advertisements;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "car_image_metadata",
+            joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "image_metadata_id", referencedColumnName = "id")
+    )
+    private List<ImageMetadataEntity> images;
 }

@@ -8,13 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -48,4 +43,12 @@ public class AdvertisementEntity extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "car_id")
     private CarEntity car;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "advertisement_image_metadata",
+            joinColumns = @JoinColumn(name = "advertisement_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "image_metadata_id", referencedColumnName = "id")
+    )
+    private List<ImageMetadataEntity> images;
 }

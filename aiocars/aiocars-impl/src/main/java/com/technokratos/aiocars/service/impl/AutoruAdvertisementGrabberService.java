@@ -17,29 +17,21 @@ import java.util.Collection;
 @Service
 public class AutoruAdvertisementGrabberService implements AdvertisementGrabberService {
 
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public Collection<AdvertisementEntity> grabAdvertisements(CarEntity car, AdvertisementFilterRequest filter) {
-        String baseUrl = buildAutoUrlWithoutGeo(car);
+        String baseUrl = buildAutoUrl(car, filter);
+        System.out.println(baseUrl);
+        System.out.println(restTemplate.getForObject(baseUrl, String.class));
         return null;
     }
 
-    private static final String AUTO_RU_URL_BASE = "http://auto.ru/cars/%s/%s/all/?sort=cr_date-desc";
+    private static final String AUTO_RU_URL_BASE = "https://auto.ru/%s/cars/%s/%s/all/?sort=cr_date-desc";
 
-    private static final String AUTO_RU_URL_GEO_SUGGEST = "http://auto.ru/-/ajax/desktop/getGeoSuggest/";
 
-    private String buildAutoUrlWithoutGeo(CarEntity car){
-        return String.format(AUTO_RU_URL_BASE, car.getBrand().getName(), car.getParserData().getAutoruSlug());
-    }
-
-    public int grabAutoRuGeoId(AdvertisementFilterRequest filterRequest){
-        GeoSuggestDto geoSuggestRequest = GeoSuggestDto.builder()
-                .letters(filterRequest.getCity())
-                .build();
-        GeoSuggestDto geoSuggestDto =
-                restTemplate.postForEntity(AUTO_RU_URL_GEO_SUGGEST, geoSuggestRequest, GeoSuggestDto.class).getBody();
-        return Integer.parseInt(geoSuggestDto.getGeoId());
+    private String buildAutoUrl(CarEntity car, AdvertisementFilterRequest filterRequest){
+        return String.format(AUTO_RU_URL_BASE, filterRequest.getCity(), car.getBrand().getName(), car.getParserData().getAutoruSlug());
     }
 }

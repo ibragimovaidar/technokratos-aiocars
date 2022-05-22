@@ -31,6 +31,6 @@ public class TestController {
                 .city("Казань")
                 .cityRadius(500)
                 .build();
-        return String.valueOf(grabberService.grabAutoRuGeoId(filterRequest));
+        return String.valueOf(grabberService.grabAdvertisements(car, filterRequest));
     }
 }

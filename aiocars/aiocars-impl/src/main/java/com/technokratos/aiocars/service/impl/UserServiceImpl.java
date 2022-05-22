@@ -5,6 +5,7 @@ import com.technokratos.aiocars.dto.enums.Privilege;
 import com.technokratos.aiocars.dto.enums.Role;
 import com.technokratos.aiocars.dto.request.UserRegisterRequest;
 import com.technokratos.aiocars.dto.request.UserRequest;
+import com.technokratos.aiocars.dto.response.UserResponse;
 import com.technokratos.aiocars.exception.UserNotFoundException;
 import com.technokratos.aiocars.model.PrivilegeEntity;
 import com.technokratos.aiocars.model.RoleEntity;
@@ -52,6 +53,13 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(UserNotFoundException::new);
     }
 
+    @Override
+    public UserResponse getByUsername(String username) {
+        return userRepository.findOneByUsername(username)
+                .map(userMapper::toResponse)
+                .orElseThrow(UserNotFoundException::new);
+    }
+
     private RoleEntity getRole() {
         Set<PrivilegeEntity> privileges = privilegeRepository
                 .findByPrivilegeIsIn(Set.of(Privilege.CREATE, Privilege.DELETE, Privilege.WRITE, Privilege.READ));
@@ -60,5 +68,4 @@ public class UserServiceImpl implements UserService {
                 .privileges(privileges)
                 .build();
     }
-
 }
