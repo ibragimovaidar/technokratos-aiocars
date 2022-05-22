@@ -3,9 +3,7 @@ package com.technokratos.aiocars.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -25,4 +23,12 @@ public class BrandEntity extends AbstractEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "brand")
     private List<CarEntity> cars;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "brand_image_metadata",
+            joinColumns = @JoinColumn(name = "brand_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "image_metadata_id", referencedColumnName = "id")
+    )
+    private List<ImageMetadataEntity> images;
 }
