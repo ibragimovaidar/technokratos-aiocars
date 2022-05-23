@@ -41,4 +41,8 @@ public class CarEntity extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "image_metadata_id", referencedColumnName = "id")
     )
     private List<ImageMetadataEntity> images;
+
+    public void addImage(ImageMetadataEntity image){
+        images.add(image);
+    }
 }

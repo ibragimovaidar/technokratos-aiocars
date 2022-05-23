@@ -31,4 +31,13 @@ public class BrandEntity extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "image_metadata_id", referencedColumnName = "id")
     )
     private List<ImageMetadataEntity> images;
+
+    public void addCar(CarEntity car){
+        cars.add(car);
+        car.setBrand(this);
+    }
+
+    public void addImage(ImageMetadataEntity image){
+        images.add(image);
+    }
 }
