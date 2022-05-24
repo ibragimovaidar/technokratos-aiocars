@@ -1,5 +1,6 @@
 package com.technokratos.aiocars.model;
 
+import com.technokratos.aiocars.model.embedded.CarParserData;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
