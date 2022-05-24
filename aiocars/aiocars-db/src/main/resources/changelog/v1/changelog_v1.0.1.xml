@@ -12,4 +12,7 @@
     <include file="20220428-add-refresh-token.xml" relativeToChangelogFile="true"/>
     <include file="20220520-add-image-metadata.xml" relativeToChangelogFile="true"/>
     <include file="20220523-add-admin.xml" relativeToChangelogFile="true"/>
+    <include file="20220524-add-location.xml" relativeToChangelogFile="true"/>
+    <include file="20220524-update-advertisement.xml" relativeToChangelogFile="true"/>
+    <include file="20220524-add-city.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

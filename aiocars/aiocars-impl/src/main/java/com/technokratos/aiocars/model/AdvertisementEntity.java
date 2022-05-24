@@ -56,6 +56,10 @@ public class AdvertisementEntity extends AbstractEntity {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private UserEntity user;
 
-    @OneToOne(mappedBy = "advertisement")
+    @OneToOne(mappedBy = "advertisement", fetch = FetchType.EAGER)
     private AdvertisementLocationEntity location;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    private CityEntity city;
 }

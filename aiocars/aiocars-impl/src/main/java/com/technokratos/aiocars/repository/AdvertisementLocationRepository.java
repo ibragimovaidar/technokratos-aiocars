@@ -16,5 +16,5 @@ public interface AdvertisementLocationRepository extends JpaRepository<Advertise
                     "round(cast(st_distancesphere(position, :point) as numeric), 2) as distance " +
                     "from advertisement_location l order by distance asc limit :limit",
             nativeQuery = true)
-    List<AdvertisementLocationEntity> findAllOrderedByDistance(@Param("point") Point point, int limit);
+    List<AdvertisementLocationEntity> findAllOrderedByDistance(Point point, int limit);
 }
