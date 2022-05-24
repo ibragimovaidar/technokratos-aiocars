@@ -6,4 +6,6 @@ public interface AiocarsConstants {
     String PRIVILEGE = "PRIVILEGE";
     String AUTHORIZATION = "Authorization";
     String BEARER = "Bearer ";
+
+    Integer POSTGIS_SRID = 4326;
 }

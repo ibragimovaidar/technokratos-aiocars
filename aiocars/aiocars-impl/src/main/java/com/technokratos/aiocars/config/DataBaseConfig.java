@@ -56,7 +56,7 @@ public class DataBaseConfig {
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.ddl.auto", "none");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisPG10Dialect");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         return properties;
