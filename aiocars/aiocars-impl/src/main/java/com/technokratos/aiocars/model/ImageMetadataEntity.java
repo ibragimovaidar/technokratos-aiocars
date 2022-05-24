@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Getter
@@ -13,6 +14,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @ToString
 @SuperBuilder
+@Table(name = "image_metadata")
 public class ImageMetadataEntity extends AbstractEntity {
 
     @Column(nullable = false)
