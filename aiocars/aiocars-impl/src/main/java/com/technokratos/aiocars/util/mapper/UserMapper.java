@@ -1,6 +1,7 @@
 package com.technokratos.aiocars.util.mapper;
 
 import com.technokratos.aiocars.dto.request.UserRegisterRequest;
+import com.technokratos.aiocars.dto.response.LightUserResponse;
 import com.technokratos.aiocars.dto.response.UserResponse;
 import com.technokratos.aiocars.model.UserEntity;
 import org.mapstruct.Mapper;
@@ -20,4 +21,6 @@ public interface UserMapper {
     UserEntity toEntity(UserRegisterRequest userRegisterRequest);
 
     UserResponse toResponse(UserEntity userEntity);
+
+    LightUserResponse toLightResponse(UserEntity userEntity);
 }

@@ -2,6 +2,7 @@ package com.technokratos.aiocars.util.mapper;
 
 import com.technokratos.aiocars.dto.request.CarRequest;
 import com.technokratos.aiocars.dto.response.CarResponse;
+import com.technokratos.aiocars.dto.response.LightCarResponse;
 import com.technokratos.aiocars.model.CarEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,4 +20,6 @@ public interface CarMapper {
     @Mapping(target = "images", ignore = true)
     @Mapping(target = "parserData", ignore = true)
     CarEntity toEntity(CarRequest car);
+
+    LightCarResponse toLightResponse(CarEntity car);
 }

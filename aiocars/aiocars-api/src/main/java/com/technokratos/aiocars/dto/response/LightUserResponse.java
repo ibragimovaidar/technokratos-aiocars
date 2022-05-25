@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -14,15 +13,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CarResponse {
+public class LightUserResponse {
 
     private UUID id;
 
-    private String name;
+    private String firstName;
 
-    private String description;
+    private String lastName;
 
-    private BrandResponse brand;
-
-    private List<ImageMetadataResponse> images;
+    private String username;
 }

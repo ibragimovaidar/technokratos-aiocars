@@ -2,6 +2,7 @@ package com.technokratos.aiocars.util.mapper;
 
 import com.technokratos.aiocars.dto.request.BrandRequest;
 import com.technokratos.aiocars.dto.response.BrandResponse;
+import com.technokratos.aiocars.dto.response.LightBrandResponse;
 import com.technokratos.aiocars.model.BrandEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,4 +19,6 @@ public interface BrandMapper {
     @Mapping(target = "images", ignore = true)
     @Mapping(target = "cars", ignore = true)
     BrandEntity toEntity(BrandRequest request);
+
+    LightBrandResponse toLightResponse(BrandEntity brand);
 }
