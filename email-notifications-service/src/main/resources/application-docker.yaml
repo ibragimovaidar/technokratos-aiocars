@@ -1,0 +1,3 @@
+app:
+  rabbitmq:
+    host-name: rabbitmq
