@@ -1,4 +1,4 @@
-package com.technokratos.aiocars.model;
+package com.technokratos.aiocars.model.embedded;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

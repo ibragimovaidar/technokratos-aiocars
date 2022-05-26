@@ -6,23 +6,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CarResponse {
-
-    private UUID id;
+public class CityResponse {
 
     private String name;
 
     private String description;
 
-    private BrandResponse brand;
+    private Double lat;
 
-    private List<ImageMetadataResponse> images;
+    private Double lon;
 }

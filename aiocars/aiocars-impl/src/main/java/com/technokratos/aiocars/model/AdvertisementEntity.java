@@ -51,4 +51,15 @@ public class AdvertisementEntity extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "image_metadata_id", referencedColumnName = "id")
     )
     private List<ImageMetadataEntity> images;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private UserEntity user;
+
+    @OneToOne(mappedBy = "advertisement", fetch = FetchType.EAGER)
+    private AdvertisementLocationEntity location;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    private CityEntity city;
 }

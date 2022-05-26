@@ -17,6 +17,7 @@ public interface CarApi {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     CarResponse create(@RequestBody CarRequest carRequest);
 
     @GetMapping
