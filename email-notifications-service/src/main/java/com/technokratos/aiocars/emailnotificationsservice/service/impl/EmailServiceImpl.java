@@ -1,6 +1,6 @@
 package com.technokratos.aiocars.emailnotificationsservice.service.impl;
 
-import com.technokratos.aiocars.emailnotificationsservice.messaging.EmailNotificationMessageDto;
+import com.technokratos.aiocars.emailnotificationsservice.messaging.NotificationMessageDto;
 import com.technokratos.aiocars.emailnotificationsservice.service.EmailService;
 import freemarker.template.Configuration;
 import lombok.Cleanup;
@@ -26,25 +26,25 @@ public class EmailServiceImpl implements EmailService {
     private final Configuration freemarkerConfiguration;
 
     @Override
-    public void sendNotification(EmailNotificationMessageDto emailNotificationMessage) {
+    public void sendNotification(NotificationMessageDto emailNotificationMessage) {
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
             helper.setSubject(
                     String.format("New advertisement on AIOCars - %s %s",
                             emailNotificationMessage.getCar().getBrand(), emailNotificationMessage.getCar().getName()));
-            helper.setTo(emailNotificationMessage.getUser().getEmail());
+            helper.setTo(emailNotificationMessage.getTarget());
             String emailContent = getEmailContent(emailNotificationMessage);
             helper.setText(emailContent, true);
             javaMailSender.send(mimeMessage);
-            log.info("Email was sent to {}", emailNotificationMessage.getUser().getEmail());
+            log.info("Email was sent to {}", emailNotificationMessage.getTarget());
         } catch (Exception e){
             log.error("Email sending error", e);
         }
     }
 
     @SneakyThrows
-    private String getEmailContent(EmailNotificationMessageDto emailNotificationMessage){
+    private String getEmailContent(NotificationMessageDto emailNotificationMessage){
         @Cleanup StringWriter stringWriter = new StringWriter();
         Map<String, Object> model = new HashMap<>();
         model.put("user", emailNotificationMessage.getUser());
