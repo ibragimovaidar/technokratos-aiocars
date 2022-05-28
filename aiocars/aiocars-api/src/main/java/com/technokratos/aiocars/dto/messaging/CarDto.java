@@ -1,12 +1,14 @@
-package com.technokratos.aiocars.emailnotificationsservice.messaging;
+package com.technokratos.aiocars.dto.messaging;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CarDto {
 
     private String name;

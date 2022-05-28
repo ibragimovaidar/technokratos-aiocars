@@ -8,4 +8,7 @@ public interface AiocarsConstants {
     String BEARER = "Bearer ";
 
     Integer POSTGIS_SRID = 4326;
+
+    String RABBIT_EMAIL_NOTIFICATION_SERVICE_ROUTING_KEY = "notifications.email";
+    String RABBIT_TELEGRAM_NOTIFICATION_SERVICE_ROUTING_KEY = "notifications.telegram";
 }

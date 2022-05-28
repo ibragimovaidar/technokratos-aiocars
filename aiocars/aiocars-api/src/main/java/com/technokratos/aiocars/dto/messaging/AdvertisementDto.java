@@ -1,6 +1,9 @@
-package com.technokratos.aiocars.emailnotificationsservice.messaging;
+package com.technokratos.aiocars.dto.messaging;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
