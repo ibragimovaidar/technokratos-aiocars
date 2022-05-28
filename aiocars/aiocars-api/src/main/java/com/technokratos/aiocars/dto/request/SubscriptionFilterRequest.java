@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdvertisementFilterRequest {
+public class SubscriptionFilterRequest {
 
-    private String city;
-
-    private Integer cityRadius;
+    private Integer radius;
 
     private Integer minMileage;
 
@@ -22,5 +20,9 @@ public class AdvertisementFilterRequest {
     private Integer minYear;
 
     private Integer maxYear;
+
+    private Long minPrice;
+
+    private Long maxPrice;
 
 }

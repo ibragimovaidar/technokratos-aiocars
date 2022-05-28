@@ -1,15 +1,11 @@
 package com.technokratos.aiocars.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.technokratos.aiocars.dto.enums.SubscriptionType;
+import com.technokratos.aiocars.model.embedded.SubscriptionFilter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,32 +13,18 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@Table(name = "subscription")
 public class SubscriptionEntity extends AbstractEntity {
 
-    private String city;
+    private String target;
 
-    private Integer radius;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private SubscriptionType type;
 
+    @Builder.Default
     @Column(name = "is_active")
-    private boolean isActive;
-
-    @Column(name = "min_mileage")
-    private Integer minMileage;
-
-    @Column(name = "max_mileage")
-    private Integer maxMileage;
-
-    @Column(name = "min_price")
-    private Long minPrice;
-
-    @Column(name = "max_price")
-    private Long maxPrice;
-
-    @Column(name = "min_year")
-    private Integer minYear;
-
-    @Column(name = "max_year")
-    private Integer maxYear;
+    private boolean isActive = true;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
@@ -51,4 +33,11 @@ public class SubscriptionEntity extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "car_id")
     private CarEntity car;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    private CityEntity city;
+
+    @Embedded
+    private SubscriptionFilter filter;
 }

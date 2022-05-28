@@ -15,4 +15,5 @@
     <include file="20220524-add-location.xml" relativeToChangelogFile="true"/>
     <include file="20220524-update-advertisement.xml" relativeToChangelogFile="true"/>
     <include file="20220524-add-city.xml" relativeToChangelogFile="true"/>
+    <include file="20220528-update-subscriptions.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
