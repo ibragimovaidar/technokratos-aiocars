@@ -1,4 +1,4 @@
-package com.technokratos.aiocars.emailnotificationsservice.messaging;
+package com.technokratos.aiocars.dto.messaging;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

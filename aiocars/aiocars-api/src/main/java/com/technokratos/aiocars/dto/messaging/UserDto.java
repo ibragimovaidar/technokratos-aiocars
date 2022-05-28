@@ -1,4 +1,4 @@
-package com.technokratos.aiocars.emailnotificationsservice.messaging;
+package com.technokratos.aiocars.dto.messaging;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CarDto {
+public class UserDto {
 
-    private String name;
+    private String username;
 
-    private String brand;
+    private String firstName;
+
+    private String lastName;
 }

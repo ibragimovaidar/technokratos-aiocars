@@ -334,7 +334,7 @@
                         <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
                             <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
                                 <div class="product-entry">
-                                    <img src="${ad.imageUrl}" alt="" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+                                    <img src="<#if ad.imageUrl??>${ad.imageUrl}<#else>https://res.cloudinary.com/dbi0vhbuc/image/upload/v1653764987/free-car-icon-1057-thumb_lzdqya.png</#if>" alt="" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
                                     <div class="text">
                                         <h3>${car.brand} ${car.name}</h3>
                                         <span class="text">${ad.year}</span>

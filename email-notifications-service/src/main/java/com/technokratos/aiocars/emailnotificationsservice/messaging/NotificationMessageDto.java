@@ -11,7 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EmailNotificationMessageDto {
+public class NotificationMessageDto {
+
+    private String target;
 
     private UserDto user;
 

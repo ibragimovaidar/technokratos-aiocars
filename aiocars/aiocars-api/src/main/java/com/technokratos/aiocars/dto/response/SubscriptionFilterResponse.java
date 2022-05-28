@@ -6,22 +6,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CityResponse {
+public class SubscriptionFilterResponse {
 
-    private UUID id;
+    private Integer radius;
 
-    private String name;
+    private Integer minMileage;
 
-    private String description;
+    private Integer maxMileage;
 
-    private Double lat;
+    private Integer minYear;
 
-    private Double lon;
+    private Integer maxYear;
+
+    private Long minPrice;
+
+    private Long maxPrice;
 }

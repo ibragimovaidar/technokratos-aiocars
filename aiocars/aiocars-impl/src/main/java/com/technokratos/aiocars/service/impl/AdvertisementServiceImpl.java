@@ -11,7 +11,9 @@ import com.technokratos.aiocars.exception.UserNotFoundException;
 import com.technokratos.aiocars.model.*;
 import com.technokratos.aiocars.repository.*;
 import com.technokratos.aiocars.service.AdvertisementService;
+import com.technokratos.aiocars.service.scheduling.SubscriptionTaskManager;
 import com.technokratos.aiocars.util.mapper.AdvertisementMapper;
+import com.technokratos.aiocars.util.mapper.CarMapper;
 import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
@@ -43,7 +45,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     private final AdvertisementMapper advertisementMapper;
 
+    private final CarMapper carMapper;
+
     private final GeometryFactory geometryFactory;
+
+    private final SubscriptionTaskManager subscriptionTaskManager;
 
     @Override
     public AdvertisementResponse create(UUID userId, AdvertisementRequest advertisementRequest) {
@@ -76,12 +82,17 @@ public class AdvertisementServiceImpl implements AdvertisementService {
                 .location(advertisementLocation)
                 .images(images)
                 .type(AdvertisementType.AIOCARS)
+                .mileage(advertisementRequest.getMileage())
+                .price(advertisementRequest.getPrice())
+                .year(advertisementRequest.getYear())
                 .isActive(true)
                 .car(car)
                 .city(city)
                 .user(user)
                 .build();
-        return advertisementMapper.toResponse(advertisementRepository.save(advertisement));
+        AdvertisementResponse response = advertisementMapper.toResponse(advertisementRepository.save(advertisement));
+        subscriptionTaskManager.handleSubscriptions(response, carMapper.toResponse(car));
+        return response;
     }
 
     @Override

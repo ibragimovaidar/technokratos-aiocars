@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="001" author="Aydar Ibragimov">
+        <addColumn tableName="subscription">
+            <column name="target" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="subscription">
+            <column name="type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="002" author="Aydar Ibragimov">
+        <dropColumn tableName="subscription" columnName="city"/>
+        <addColumn tableName="subscription">
+            <column name="city_id" type="uuid">
+                <constraints foreignKeyName="fk_subscription_city"
+                             referencedTableName="d_city"
+                             referencedColumnNames="id"
+                             initiallyDeferred="false"
+                             deleteCascade="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
