@@ -2,6 +2,7 @@ package com.technokratos.aiocars.api;
 
 import com.technokratos.aiocars.dto.request.AdvertisementRequest;
 import com.technokratos.aiocars.dto.response.AdvertisementResponse;
+import io.swagger.annotations.Api;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Api(tags = "advertisements-api")
 @RequestMapping("/api/v1/advertisements")
 public interface AdvertisementApi <T extends UserDetails> {
 
