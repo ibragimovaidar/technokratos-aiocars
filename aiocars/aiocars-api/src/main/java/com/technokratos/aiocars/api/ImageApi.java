@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
-@Api(tags = "images-api")
+@Api(tags = "image-api")
 @RequestMapping("/api/v1/images")
 public interface ImageApi {
 

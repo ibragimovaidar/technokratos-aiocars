@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Api(tags = "advertisements-api")
+@Api(tags = "advertisement-api")
 @RequestMapping("/api/v1/advertisements")
 public interface AdvertisementApi <T extends UserDetails> {
 

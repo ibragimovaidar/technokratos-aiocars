@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Api(tags = "brands-api")
+@Api(tags = "brand-api")
 @RequestMapping("/api/v1/brands")
 public interface BrandApi {
 

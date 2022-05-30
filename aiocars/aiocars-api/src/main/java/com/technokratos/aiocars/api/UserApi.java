@@ -15,7 +15,7 @@ import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@Api(tags = "users-api")
+@Api(tags = "user-api")
 @RequestMapping("/api/v1/users")
 public interface UserApi {
 
