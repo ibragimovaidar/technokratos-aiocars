@@ -28,6 +28,13 @@ services:
       - aiocars-rabbitmq
     restart: always
     
+  aiocars-telegram-notifications-service:
+    container_name: aiocars-telegram-notifications-service
+    build: ./telegram-notifications-service
+    depends_on:
+      - aiocars-rabbitmq
+    restart: always    
+    
   aiocars:
     container_name: aiocars
     build: ./aiocars
