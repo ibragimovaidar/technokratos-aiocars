@@ -1,6 +1,8 @@
 package com.technokratos.aiocars.service.impl;
 
+import com.technokratos.aiocars.dto.LocationDto;
 import com.technokratos.aiocars.dto.enums.AdvertisementType;
+import com.technokratos.aiocars.dto.request.AdvertisementByLocationRequest;
 import com.technokratos.aiocars.dto.request.AdvertisementRequest;
 import com.technokratos.aiocars.dto.request.LightImageRequest;
 import com.technokratos.aiocars.dto.response.AdvertisementResponse;
@@ -104,5 +106,40 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public AdvertisementResponse getById(UUID id) {
         return advertisementMapper.toResponse(
                 advertisementRepository.findById(id).orElseThrow(AdvertisementNotFoundException::new));
+    }
+
+    @Override
+    public Page<AdvertisementResponse> getAllByCarId(UUID carId, Pageable pageable) {
+        return advertisementRepository.findAllByCarId(carId, pageable).map(advertisementMapper::toResponse);
+    }
+
+    @Override
+    public List<AdvertisementResponse> getAllInRadiusByLocation(AdvertisementByLocationRequest advertisementByLocation) {
+        LocationDto location = advertisementByLocation.getLocation();
+        List<AdvertisementLocationEntity> advertisementLocations =
+                advertisementLocationRepository.findAllInRadiusByPoint(
+                        geometryFactory.createPoint(new Coordinate(location.getLon(), location.getLat())),
+                        advertisementByLocation.getRadius());
+        return advertisementLocations.stream()
+                .map(AdvertisementLocationEntity::getAdvertisement)
+                .map(advertisementMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AdvertisementResponse> getAllInRadiusByCity(UUID cityId, Integer radius) {
+        CityEntity city = cityRepository.findById(cityId).orElseThrow(CityNotFoundException::new);
+        List<AdvertisementLocationEntity> advertisementLocations =
+                advertisementLocationRepository.findAllInRadiusByPoint(
+                        geometryFactory.createPoint(new Coordinate(city.getLon(), city.getLat())), radius);
+        return advertisementLocations.stream()
+                .map(AdvertisementLocationEntity::getAdvertisement)
+                .map(advertisementMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<AdvertisementResponse> getAllByCityId(UUID cityId, Pageable pageable) {
+        return advertisementRepository.findAllByCityId(cityId, pageable).map(advertisementMapper::toResponse);
     }
 }

@@ -11,7 +11,6 @@ import java.util.UUID;
 
 public interface CityRepository extends JpaRepository<CityEntity, UUID> {
 
-    //TODO nearest city by point
     @Query(
             value = "select c.id, c.lat, c.lon, c.name, c.description, c.position, c.create_date, c.update_date, " +
                     "round(cast(st_distancesphere(position, :point) as numeric), 2) as distance " +
