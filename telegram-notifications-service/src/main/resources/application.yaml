@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:/data/aiocars-telegram
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+app:
+  telegram:
+    username: AiocarsBot
+    token: 5477888121:AAHH-JdrD_0uQVvo8vLFBGXRY2VE9KNGP7g
+  rabbitmq:
+    host-name: localhost

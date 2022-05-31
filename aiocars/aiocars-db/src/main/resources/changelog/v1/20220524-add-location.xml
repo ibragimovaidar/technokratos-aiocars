@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="001" author="Aydar Ibragimov">
+        <createTable tableName="advertisement_location">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="update_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="lat" type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lon" type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="geometry(POINT, 4326)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="advertisement_id" type="uuid">
+                <constraints foreignKeyName="fk_advertisement_location"
+                             referencedTableName="advertisement"
+                             referencedColumnNames="id"
+                             initiallyDeferred="false"
+                             deleteCascade="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

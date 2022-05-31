@@ -1,0 +1,17 @@
+app:
+  rabbitmq:
+    host-name: localhost
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: aiocarsproject@gmail.com
+    password: aefihiikzqyyixxp
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

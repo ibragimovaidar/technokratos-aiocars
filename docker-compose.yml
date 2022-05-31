@@ -1,0 +1,48 @@
+version: "3.9"
+services: 
+  aiocars-db: 
+    container_name: aiocars-db
+    environment: 
+      POSTGRES_DB: aiocars
+      POSTGRES_PASSWORD: aiocars
+      POSTGRES_USER: aiocars
+    image: postgis/postgis
+    ports: 
+      - 5432:5432
+    restart: always
+    volumes: 
+      - pgdata:/var/lib/postgresql/data
+
+  aiocars-rabbitmq: 
+    container_name: aiocars-rabbitmq
+    image: rabbitmq:3.10-management
+    ports: 
+      - 5672:5672
+      - 15672:15672
+    restart: always
+
+  aiocars-email-notifications-service:
+    container_name: aiocars-email-notifications-service
+    build: ./email-notifications-service
+    depends_on:
+      - aiocars-rabbitmq
+    restart: always
+    
+  aiocars-telegram-notifications-service:
+    container_name: aiocars-telegram-notifications-service
+    build: ./telegram-notifications-service
+    depends_on:
+      - aiocars-rabbitmq
+    restart: always    
+    
+  aiocars:
+    container_name: aiocars
+    build: ./aiocars
+    depends_on:
+      - aiocars-db
+      - aiocars-rabbitmq
+    ports:
+      - 8080:8080
+    restart: always
+volumes: 
+  pgdata: 
