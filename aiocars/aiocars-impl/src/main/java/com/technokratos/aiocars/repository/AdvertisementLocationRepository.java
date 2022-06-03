@@ -4,6 +4,7 @@ import com.technokratos.aiocars.model.AdvertisementLocationEntity;
 import org.locationtech.jts.geom.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,9 +20,10 @@ public interface AdvertisementLocationRepository extends JpaRepository<Advertise
 
 
     @Query(
-            value = "select l.id, l.lat, l.lon, l.position, l.advertisement_id," +
+            value = "select l.id, l.lat, l.lon, l.position, l.advertisement_id, l.create_date, l.update_date " +
                     "round(cast(st_distancesphere(position, :point) as numeric), 2) as distance " +
                     "from advertisement_location l where distance <= :radius",
             nativeQuery = true)
-    List<AdvertisementLocationEntity> findAllInRadiusByPoint(Point point, int radius);
+    List<AdvertisementLocationEntity> findAllInRadiusByPoint(@Param("point") Point point,
+                                                             @Param("radius") int radius);
 }

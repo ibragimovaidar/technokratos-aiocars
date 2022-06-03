@@ -41,7 +41,7 @@ public interface AdvertisementApi <T extends UserDetails> {
     @PostMapping("/byLocation/")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    List<AdvertisementResponse> getAllInRadiusByLocation(AdvertisementByLocationRequest advertisementByLocation);
+    List<AdvertisementResponse> getAllInRadiusByLocation(@RequestBody AdvertisementByLocationRequest advertisementByLocation);
 
     @GetMapping("/byCity/{cityId}")
     @ResponseStatus(HttpStatus.OK)
