@@ -21,14 +21,17 @@ public interface UserApi {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     UUID createUser(@RequestBody UserRegisterRequest user);
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
     TokenCoupleResponse login(@RequestBody UserRequest userRequest);
 
     @GetMapping(value = "/me",  produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
     UserResponse getUser(@AuthenticationPrincipal UserDetails userDetails);
 }
 
